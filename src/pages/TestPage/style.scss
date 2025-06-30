@@ -1,0 +1,13 @@
+
+
+.main {
+  width: 100%;
+  background-color: aqua;
+  height: calc(100vh - 60px - 60px);
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

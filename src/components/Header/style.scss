@@ -1,0 +1,28 @@
+.header {
+  display: flex;
+  font-family: "InspireTWDC", "AvenirNext", "Matterhorn", "Helvetica",
+    sans-serif;
+  font-size: 1rem;
+  width: 100%;
+
+  &__nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 476px;
+    height: 55px;
+  }
+
+  &__nav-item {
+    a {
+      text-decoration: none;
+      color: inherit;
+      font-weight: 550;
+      transition: color 0.3s ease;
+    }
+
+    &:hover {
+      color: #3a0ca3;
+    }
+  }
+}
