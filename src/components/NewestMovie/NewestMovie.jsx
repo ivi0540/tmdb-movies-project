@@ -15,9 +15,25 @@ const NewestMovie = () => {
         backgroundColor: "red",
       };
   useEffect(() => {
-    getNowPlayingMovies().then((data) => setNewestMovie(data));
+    getNowPlayingMovies().then((data) => {
+      setNewestMovie(data);
+      console.log(data);
+    });
   }, []);
-  return <div className="background" style={style}></div>;
+  return (
+    <div className="background" style={style}>
+      <div className="background__cont1">
+        <label className="background__title">
+          {newestMovie?.results[0]?.original_title}
+        </label>
+
+        <div className="background__cont2">
+          <button className="background__btn">More about the film</button>
+          <button className="background__btn">Watch trailer</button>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export { NewestMovie };
