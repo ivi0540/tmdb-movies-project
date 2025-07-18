@@ -15,14 +15,20 @@ const Footer = () => {
         <TMDBLogo />
       </Link>
 
-      <div className="footer__item">© {currentYear}</div>
+      <div className="footer__item" aria-label="Текущий год: {currentYear}">
+        © {currentYear}
+      </div>
 
       <Link
-        to={"https://github.com/ivi0540"}
+        to="https://github.com/ivi0540"
         target="_blank"
         rel="noopener noreferrer"
       >
-        <img className="footer__GitHubLogo" src={GitHubLogo} alt="GitHub Profile" />
+        <img
+          className="footer__GitHubLogo"
+          src={GitHubLogo}
+          alt="GitHub Profile"
+        />
       </Link>
     </footer>
   );

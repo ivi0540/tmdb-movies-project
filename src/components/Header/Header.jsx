@@ -5,8 +5,8 @@ import "./style.scss"
 const Header = () => {
   const menu = [
     { path: "/movie", label: "Movie" },
-    { path: "/", label: "Link2" },
-    { path: "/", label: "Link3" },
+    { path: "/", label: "Link2" }, //TODO: добавить реальные ссылки
+    { path: "/", label: "Link3" }, //TODO: пока просто заглушки
     { path: "/", label: "Link4" },
   ];
   return (
