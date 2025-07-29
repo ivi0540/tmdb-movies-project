@@ -3,9 +3,9 @@
   font-family: Arial, Helvetica, sans-serif;
   font-size: 1rem;
   width: 100%;
-  padding: 1rem 0;
 
-  border: 2px solid blue;
+  background-color: bisque;
+  padding: 0.3rem 0;
 
   &__nav {
     display: flex;
@@ -24,6 +24,7 @@
 
     a:hover {
       color: #3a0ca3;
+      background-color: aqua;
     }
   }
 }

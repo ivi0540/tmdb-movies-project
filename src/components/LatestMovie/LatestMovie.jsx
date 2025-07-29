@@ -29,6 +29,7 @@ const LatestMovie = () => {
   if (fetchStatus === "error") {
     const style = {
       backgroundColor: "red",
+      height: "100vh",
     };
     return (
       <div className="background" style={style}>

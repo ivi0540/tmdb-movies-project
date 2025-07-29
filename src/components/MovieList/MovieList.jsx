@@ -1,10 +1,11 @@
 import { getAllMovies, getMovieByTitle } from "../../api";
 import { useState, useEffect } from "react";
-import { MovieItem } from "../MovieItem/MovieItem";
-import "./style.css";
+import { MovieItem } from "./components/MovieItem/MovieItem";
+import "./style.scss";
 
 const MovieList = () => {
   const [movies, setMovies] = useState([]);
+  const [page, setPage] = useState(1);
   const searchMovie = null; //!!!!!!!
 
   useEffect(() => {
@@ -14,7 +15,7 @@ const MovieList = () => {
           const data = await getMovieByTitle(searchMovie);
           setMovies(data.results || []);
         } else {
-          const data = await getAllMovies();
+          const data = await getAllMovies(page);
           setMovies(data.results || []);
         }
       } catch (error) {
@@ -22,10 +23,21 @@ const MovieList = () => {
       }
     };
     fetchAllMovies();
-  }, []);
+  }, [page]);
 
   return (
     <>
+      <div className="paginate">
+        <button className="paginate__btn-pre" onClick={() => setPage(page - 1)}>
+          PRE
+        </button>
+        <button
+          className="paginate__btn-next"
+          onClick={() => setPage(page + 1)}
+        >
+          NEXT
+        </button>
+      </div>
       <div className="card-container">
         {movies.map((movie) => (
           <MovieItem key={movie.id} {...movie} />

@@ -8,10 +8,13 @@ const options = {
   },
 };
 
-const getAllMovies = async () => {
+const getAllMovies = async (page = 1) => {
   const errorMessage = 'Error in "src/api.js/api.js->getAllMovies"';
   try {
-    const response = await fetch(`${API_URL}/discover/movie`, options);
+    const response = await fetch(
+      `${API_URL}/discover/movie?page=${page}`,
+      options
+    );
     if (!response.ok) {
       throw new Error(`${errorMessage} ${response.status}`);
     }

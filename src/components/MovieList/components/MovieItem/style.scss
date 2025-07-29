@@ -1,0 +1,31 @@
+.poster {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  background-color: black;
+  border: solid 2px;
+  border-radius: 8px;
+  aspect-ratio: 2/3;
+  color: white;
+
+  &__info {
+    height: 50%;
+    background-color: black;
+    color: white;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  &__title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+  }
+}
+
+.poster:hover .poster__info {
+  cursor: pointer;
+  opacity: 1;
+}
