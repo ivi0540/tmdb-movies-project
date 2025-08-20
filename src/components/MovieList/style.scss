@@ -5,14 +5,3 @@
   padding: 15px;
   justify-content: center;
 }
-
-.paginate {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  &__btn-next,
-  &__btn-pre {
-    width: 30%;
-    height: 70px;
-  }
-}

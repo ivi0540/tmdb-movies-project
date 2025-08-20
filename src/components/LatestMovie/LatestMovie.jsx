@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { getNowPlayingMovies } from "../../api";
 import { Preloader } from "../Preloader/Preloader";
+import { ErrorPreloader } from "../ErrorPreloader/ErrorPreloader";
 import "./style.scss";
 
 const LatestMovie = () => {
@@ -27,15 +28,7 @@ const LatestMovie = () => {
   }, []);
 
   if (fetchStatus === "error") {
-    const style = {
-      backgroundColor: "red",
-      height: "100vh",
-    };
-    return (
-      <div className="background" style={style}>
-        <h1>Error: data not loaded, try turning on VPN.</h1>
-      </div>
-    );
+    return <ErrorPreloader />;
   }
 
   if (fetchStatus === "loading") {
