@@ -11,7 +11,6 @@ const MovieList = () => {
   const [movies, setMovies] = useState([]);
   const [page, setPage] = useState(1);
   const [pagination, setPagination] = useState(null);
-  const [searchPage, setSearchPage] = useState(0);
   const [searchMovie, setSearchMovie] = useState("");
   const [fetchStatus, setFetchStatus] = useState("loading"); // success | loading | error
 
@@ -20,7 +19,7 @@ const MovieList = () => {
     const fetchAllMovies = async () => {
       try {
         const data = searchMovie
-          ? await getMovieByTitle(searchMovie)
+          ? await getMovieByTitle(searchMovie, page)
           : await getAllMovies(page);
         if (!isMounted) return;
         setMovies(data.results || []);
@@ -58,8 +57,6 @@ const MovieList = () => {
         setPage={setPage}
         pagination={pagination}
         setPagination={setPagination}
-        searchPage={searchPage}
-        setSearchPage={setSearchPage}
         setFetchStatus={setFetchStatus}
       />
       <div className="card-container">

@@ -1,13 +1,13 @@
 import "./style.scss";
+import { useState } from "react";
 
 const Paginate = ({
   page,
   setPage,
   pagination,
-  searchPage,
-  setSearchPage,
   setFetchStatus, // success | loading | error
 }) => {
+  const [searchPage, setSearchPage] = useState("");
   const goToPreviousPage = () => {
     goToPage(page - 1);
   };
@@ -17,6 +17,7 @@ const Paginate = ({
   };
 
   const goToPage = (pageNumber) => {
+    pageNumber = Number(pageNumber);
     if (pageNumber > 0 && pageNumber <= pagination.total_pages) {
       setPage(Number(pageNumber));
       setFetchStatus("loading");
@@ -47,12 +48,9 @@ const Paginate = ({
         return (
           <button
             key={item}
-            style={item === pagination.page ? { backgroundColor: "red" } : {}}
+            style={item === page ? { backgroundColor: "blue" } : {}}
             className="paginate__btn-pag"
-            onClick={() => {
-              setPage(item);
-              setFetchStatus("loading");
-            }}
+            onClick={() => item !== page && goToPage(item)}
           >
             {item}
           </button>
@@ -61,7 +59,8 @@ const Paginate = ({
   };
 
   const handleInputChange = (e) => {
-    setSearchPage(e.target.value);
+    const value = e.target.value.replace(/[^0-9]/g, "");
+    setSearchPage(value);
   };
 
   const handleEnterKeyPress = (e) => {
@@ -75,7 +74,7 @@ const Paginate = ({
       <div className="paginate__container">
         <button
           className="paginate__btn-pre"
-          disabled={page - 1 < 1}
+          disabled={page <= 1}
           onClick={goToPreviousPage}
         >
           PRE
@@ -83,7 +82,7 @@ const Paginate = ({
         {renderPaginationButtons()}
         <button
           className="paginate__btn-next"
-          disabled={page + 1 > pagination.total_pages}
+          disabled={page >= pagination.total_pages}
           onClick={goToNextPage}
         >
           NEXT
@@ -91,11 +90,14 @@ const Paginate = ({
       </div>
       <div className="paginate__search">
         <input
-          type="search"
+          className="paginate__input-page"
+          type="number"
+          min="1"
+          max={pagination.total_pages}
           value={searchPage}
           onChange={handleInputChange}
           onKeyDown={handleEnterKeyPress}
-          placeholder="Enter search page"
+          placeholder={`Enter page (1-${pagination.total_pages})`}
         />
         <button disabled={!searchPage} onClick={() => goToPage(searchPage)}>
           Search Page
