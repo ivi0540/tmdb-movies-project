@@ -1,0 +1,29 @@
+@keyframes hoverZoom {
+  0% {
+    transform: scale(1);
+    cursor: pointer;
+  }
+  100% {
+    transform: scale(1.05);
+    cursor: pointer;
+  }
+}
+
+.hover-zoom {
+  animation: hoverZoom 0.3s ease forwards;
+}
+
+@keyframes slideUpHover {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+}
+
+.slide-up-hover {
+  animation: slideUpHover 0.3s ease forwards;
+}

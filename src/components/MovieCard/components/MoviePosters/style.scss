@@ -1,0 +1,38 @@
+$color-border-category: orange;
+$border-width: 10px;
+$grid-min-width: 350px;
+$spacing-items: 20px;
+
+.posters-container {
+  &__category {
+    border-left: $border-width solid $color-border-category;
+  }
+  &__posters {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax($grid-min-width, 1fr));
+    gap: $spacing-items;
+    padding: $spacing-items;
+  }
+  &__wrapper-item {
+    overflow: hidden;
+  }
+  &__image-item {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+    transition: transform 0.3s ease;
+    &:hover {
+      transform: scale(1.05);
+      cursor: pointer;
+    }
+  }
+
+  &__showAllBtn {
+    width: 200px;
+    height: 50px;
+    display: block;
+    margin: auto;
+  }
+}

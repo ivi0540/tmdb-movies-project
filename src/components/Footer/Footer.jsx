@@ -22,7 +22,13 @@ const Footer = () => {
         target="_blank"
         rel="noopener noreferrer"
       >
-        <img className="footer__GitHubLogo" src={GitHubLogo} alt="GitHub Profile" />
+        <div className="footer__wrapper">
+          <img
+            className="footer__GitHubLogo"
+            src={GitHubLogo}
+            alt="GitHub Profile"
+          />
+        </div>
       </Link>
     </footer>
   );

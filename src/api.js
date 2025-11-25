@@ -71,4 +71,57 @@ const getMovieByTitle = async (title) => {
   }
 };
 
-export { getAllMovies, getMovieById, getMovieByTitle, getNowPlayingMovies };
+const getMovieImages = async (id) => {
+  const errorMessage = 'MyError in "src/api.js/api.js->getMovieImages';
+  try {
+    const response = await fetch(`${API_URL}/movie/${id}/images`, options);
+    if (!response.ok) {
+      throw new Error(`${errorMessage} ${response.status}`);
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error(error.message);
+    throw error;
+  }
+};
+
+const getMovieVideos = async (id) => {
+  const errorMessage = 'MyError in "src/api.js/api.js->getMovieVideos';
+  try {
+    const response = await fetch(`${API_URL}/movie/${id}/videos`, options);
+    if (!response.ok) {
+      throw new Error(`${errorMessage} ${response.status}`);
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error(error.message);
+    throw error;
+  }
+};
+
+const getGenres = async () => {
+  const errorMessage = 'Error in "src/api.js/api.js->getGenres"';
+  try {
+    const response = await fetch(`${API_URL}/genre/movie/list`, options);
+    if (!response.ok) {
+      throw new Error(`${errorMessage} ${response.status}`);
+    }
+    const data = await response.json();
+    return data.genres;
+  } catch (error) {
+    console.error(`${errorMessage} ${error.message}`);
+    throw error;
+  }
+};
+
+export {
+  getAllMovies,
+  getMovieById,
+  getMovieByTitle,
+  getNowPlayingMovies,
+  getMovieImages,
+  getMovieVideos,
+  getGenres,
+};

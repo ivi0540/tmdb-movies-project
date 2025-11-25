@@ -1,0 +1,20 @@
+@keyframes blurToClear {
+  0% {
+    filter: brightness(0) blur(20px);
+  }
+  25% {
+    filter: brightness(0.25) blur(15px);
+  }
+  50% {
+    filter: brightness(0.5) blur(10px);
+  }
+  75% {
+    filter: brightness(0.75) blur(5px);
+  }
+  100% {
+    filter: brightness(1) blur(0px);
+  }
+}
+.blur-to-clear {
+  animation: blurToClear 1.5s ease-out forwards;
+}

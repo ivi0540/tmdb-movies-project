@@ -1,0 +1,43 @@
+$size-btn-close: 40px;
+// $width-content-container: 28%;
+.image-fullSize-container {
+  &__black-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  &__content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__btn-container {
+    // width: receive from ImageLightbox.jsx;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__btn-close,
+  &__btn-pre,
+  &__btn-next {
+    width: $size-btn-close;
+    height: $size-btn-close;
+  }
+
+  &__image {
+    // width: receive from ImageLightbox.jsx;
+    // aspect-ratio: receive from ImageLightbox.jsx;
+  }
+}

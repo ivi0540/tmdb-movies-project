@@ -1,6 +1,6 @@
 import { MovieList } from "./components/MovieList/MovieList";
 import { MovieCard } from "./components/MovieCard/MovieCard";
-import { TestPage } from "./pages/TestPage/TestPage";
+import { MainPage } from "./pages/MainPage/MainPage";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
@@ -8,8 +8,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<MovieList />} />
-        <Route path="/test" element={<TestPage />} />
+        <Route path="/" element={<MainPage />} />
         <Route path="/movie" element={<MovieList />} />
         <Route path="/movie/:id" element={<MovieCard />} />
       </Routes>

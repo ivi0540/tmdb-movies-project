@@ -3,7 +3,13 @@ import "./style.scss";
 
 const TMDBLogo = () => {
   return (
-    <img className="logo" src={TMDBLogoImg} alt="The Movie Database Logo" />
+    <div className="logo">
+      <img
+        className="logo-image"
+        src={TMDBLogoImg}
+        alt="The Movie Database Logo"
+      />
+    </div>
   );
 };
 

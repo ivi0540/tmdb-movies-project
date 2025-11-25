@@ -1,9 +1,14 @@
+@import "../../scss/animations/index";
+
 .logo {
-  width: 100px;
-  height: 60px;
-  transition: transform 0.3s ease;
+  overflow: hidden;
+}
+
+.logo-image {
+  width: 70px;
+  object-fit: contain;
 
   &:hover {
-    transform: scale(1.05);
+    @extend .hover-zoom;
   }
 }

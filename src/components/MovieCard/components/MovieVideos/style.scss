@@ -1,0 +1,36 @@
+$color-border-category: orange;
+$border-width: 10px;
+$grid-min-width: 450px;
+$spacing-videos: 20px;
+
+.videos-container {
+  &__category {
+    border-left: $border-width solid $color-border-category;
+  }
+  &__videos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax($grid-min-width, 1fr));
+    gap: $spacing-videos;
+    padding: $spacing-videos;
+  }
+  &__video-item {
+    width: 100%;
+    position: relative;
+    aspect-ratio: 16/9;
+    iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+      border: none;
+    }
+  }
+  &__showAllBtn {
+    width: 200px;
+    height: 50px;
+    display: block;
+    margin: auto;
+  }
+}

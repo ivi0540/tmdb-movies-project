@@ -3,7 +3,7 @@ import { Footer } from "../../components/Footer/Footer";
 import { NewestMovie } from "../../components/NewestMovie/NewestMovie";
 import "./style.scss";
 
-const TestPage = () => {
+const MainPage = () => {
   return (
     <>
       <Header />
@@ -13,4 +13,4 @@ const TestPage = () => {
   );
 };
 
-export { TestPage };
+export { MainPage };
