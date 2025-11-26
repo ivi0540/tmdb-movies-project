@@ -17,7 +17,6 @@ const NewestMovie = () => {
   useEffect(() => {
     getNowPlayingMovies().then((data) => {
       setNewestMovie(data);
-      console.log(data);
     });
   }, []);
   return (

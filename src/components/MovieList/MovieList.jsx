@@ -4,7 +4,7 @@ import { MovieItem } from "../MovieItem/MovieItem";
 import { Preloader } from "../Preloader/Preloader";
 import { ErrorPreloader } from "../ErrorPreloader/ErrorPreloader";
 import { Paginate } from "./components/Paginate/Paginate";
-import "./style.css";
+import "./style.scss";
 
 const MovieList = () => {
   const [movies, setMovies] = useState([]);

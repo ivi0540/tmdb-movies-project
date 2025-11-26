@@ -1,10 +1,3 @@
-// const API_KEY = process.env.REACT_APP_API_KEY;
-
-
 const API_KEY = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxMTA1NTNkMWFhNjA4MjBmMTk3NDI4OWIzOGZlOTU5NyIsIm5iZiI6MTc0NzY3NjAyMi4zODIwMDAyLCJzdWIiOiI2ODJiNmI3NjdjOWQyNzk4ZTlkYjJlNzgiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.FjBSufuMPNn8bt6AB5QKihPf3fpBaEmGjLNCWVdkDTI";
-
-
-
 const API_URL = `https://api.themoviedb.org/3`;
-
 export { API_URL, API_KEY };
