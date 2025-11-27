@@ -39,7 +39,7 @@ const MovieList = () => {
     return () => {
       isMounted = false;
     };
-  }, [page, searchMovie, genresMap]);
+  }, [page, searchMovie]);
 
   if (fetchStatus === "error") {
     return <ErrorPreloader />;
@@ -51,6 +51,13 @@ const MovieList = () => {
 
   return (
     <>
+      <Paginate
+        page={page}
+        setPage={setPage}
+        pagination={pagination}
+        setPagination={setPagination}
+        setFetchStatus={setFetchStatus}
+      />
       <div className="card-container">
         {movies.length !== 0 ? (
           movies.map((movie) => (
@@ -64,8 +71,8 @@ const MovieList = () => {
         page={page}
         setPage={setPage}
         pagination={pagination}
-        setPagination={setPagination}
-        setFetchStatus={setFetchStatus}
+        // setPagination={setPagination}
+        // setFetchStatus={setFetchStatus}
       />
     </>
   );

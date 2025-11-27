@@ -1,5 +1,60 @@
+$size-btn: 40px;
+
+$primary: #7c3aed;
+$hover: #6d28d9;
+$disabled: #cbd5e1;
+$text: #ffffff;
+$background: gold;
+
 .paginate {
-  background-color: grey;
-  width: 300px;
-  aspect-ratio: 16/9;
+  background-color: $background;
+  width: 50%;
+  margin: 0 auto;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    & button {
+      width: $size-btn;
+      height: $size-btn;
+
+      background-color: $primary;
+      border-radius: 30%;
+      color: $text;
+
+      &:hover {
+        background-color: $hover;
+      }
+
+      &:disabled {
+        background-color: $disabled;
+      }
+    }
+  }
+
+  &__page-input {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: $size-btn;
+    input {
+      padding: 6px 0;
+      width: 60px;
+      text-align: center;
+      border: 1px solid $primary;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+    button {
+      background-color: $primary;
+      color: $text;
+      &:hover {
+        background-color: $hover;
+      }
+    }
+  }
 }
