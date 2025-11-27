@@ -56,11 +56,11 @@ const getMovieById = async (id) => {
   }
 };
 
-const getMovieByTitle = async (title) => {
+const getMovieByTitle = async (title, page = 1) => {
   const errorMessage = 'MyError in "src/api.js/api.js->getMovieByTitle';
   try {
     const response = await fetch(
-      `${API_URL}/search/movie?query=${title}`,
+      `${API_URL}/search/movie?query=${title}&page=${page}`,
       options
     );
     if (!response.ok) {

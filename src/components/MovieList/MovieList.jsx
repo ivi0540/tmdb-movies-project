@@ -1,6 +1,7 @@
 import { getAllMovies, getMovieByTitle, getGenres } from "../../api";
 import { useState, useEffect } from "react";
 import { MovieItem } from "../MovieItem/MovieItem";
+import { MovieFinder } from "./components/MovieFinder/MovieFinder";
 import { Preloader } from "../Preloader/Preloader";
 import { ErrorPreloader } from "../ErrorPreloader/ErrorPreloader";
 import { Paginate } from "./components/Paginate/Paginate";
@@ -57,6 +58,12 @@ const MovieList = () => {
         pagination={pagination}
         setPagination={setPagination}
         setFetchStatus={setFetchStatus}
+      />
+      <MovieFinder
+        searchMovie={searchMovie}
+        setSearchMovie={setSearchMovie}
+        page={page}
+        setPage={setPage}
       />
       <div className="card-container">
         {movies.length !== 0 ? (
