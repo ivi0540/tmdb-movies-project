@@ -90,7 +90,7 @@ const MovieCard = () => {
                 <div>Release date: </div>
                 <div>{getDate(movie.release_date)}</div>
                 <div>Vote average: </div>
-                <div>{(1 * movie.vote_average).toFixed(2)} / 10</div>
+                <div>{Number(movie.vote_average).toFixed(2)} / 10</div>
                 <div>Vote count: </div>
                 <div>{movie.vote_count}</div>
                 <div>Runtime: </div>

@@ -18,3 +18,18 @@
 .blur-to-clear {
   animation: blurToClear 1.5s ease-out forwards;
 }
+
+// @keyframes slideFromRight {
+//   0% {
+//     opacity: 0;
+//     transform: translateX(100%);
+//   }
+//   100% {
+//     opacity: 1;
+//     transform: translateX(0);
+//   }
+// }
+
+// .slide-from-right {
+//   animation: slideFromRight 1.5s ease-out forwards;
+// }

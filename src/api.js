@@ -21,7 +21,7 @@ const getAllMovies = async (page = 1) => {
     const data = await response.json();
     return data;
   } catch (error) {
-    console.error(`${errorMessage} ${error.message}`);
+    // console.error(`${errorMessage} ${error.message}`);
     throw error;
   }
 };
@@ -36,7 +36,7 @@ const getNowPlayingMovies = async () => {
     const data = await response.json();
     return data;
   } catch (error) {
-    console.error(`${errorMessage} ${error.message}`);
+    // console.error(`${errorMessage} ${error.message}`);
     throw error;
   }
 };
@@ -51,7 +51,7 @@ const getMovieById = async (id) => {
     const data = await response.json();
     return data;
   } catch (error) {
-    console.error(`${errorMessage} ${error.message}`);
+    // console.error(`${errorMessage} ${error.message}`);
     throw error;
   }
 };
@@ -69,7 +69,7 @@ const getMovieByTitle = async (title, page = 1) => {
     const data = await response.json();
     return data;
   } catch (error) {
-    console.error(`${errorMessage} ${error.message}`);
+    // console.error(`${errorMessage} ${error.message}`);
     throw error;
   }
 };
@@ -84,7 +84,7 @@ const getMovieImages = async (id) => {
     const data = await response.json();
     return data;
   } catch (error) {
-    console.error(error.message);
+    // console.error(error.message);
     throw error;
   }
 };
@@ -99,12 +99,12 @@ const getMovieVideos = async (id) => {
     const data = await response.json();
     return data;
   } catch (error) {
-    console.error(error.message);
+    // console.error(error.message);
     throw error;
   }
 };
 
-const getGenres = async () => {
+const getGenres = async (genre_ids = []) => {
   const errorMessage = 'Error in "src/api.js/api.js->getGenres"';
   try {
     const response = await fetch(`${API_URL}/genre/movie/list`, options);
@@ -114,7 +114,7 @@ const getGenres = async () => {
     const data = await response.json();
     return data.genres;
   } catch (error) {
-    console.error(`${errorMessage} ${error.message}`);
+    // console.error(`${errorMessage} ${error.message}`);
     throw error;
   }
 };

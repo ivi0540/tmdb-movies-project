@@ -5,8 +5,6 @@ const Paginate = ({
   page,
   setPage,
   pagination: pageInfo,
-  // setPagination,
-  // setFetchStatus,
 }) => {
   const [inputPage, setInputPage] = useState(page);
 
@@ -52,7 +50,7 @@ const Paginate = ({
         <button onClick={() => goToPage(page - 1)} disabled={page === minPage}>
           Prev page
         </button>
-        <div>
+        <div className="paginate__prev-pages">
           {previousPages.map((pageNumber) => (
             <button
               key={`prev-${pageNumber}`}
@@ -81,7 +79,7 @@ const Paginate = ({
             Go to page
           </button>
         </div>
-        <div>
+        <div className="paginate__next-pages">
           {nextPages.map((pageNumber) => (
             <button
               key={`next-${pageNumber}`}

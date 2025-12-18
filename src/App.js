@@ -1,4 +1,5 @@
-import { MovieList } from "./components/MovieList/MovieList";
+// import { MovieList } from "./components/MovieList/MovieList";
+import { MoviesPage } from "./pages/MoviesPage/MoviesPage";
 import { MovieCard } from "./components/MovieCard/MovieCard";
 import { MainPage } from "./pages/MainPage/MainPage";
 
@@ -9,7 +10,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<MainPage />} />
-        <Route path="/movie" element={<MovieList />} />
+        <Route path="/movie" element={<MoviesPage />} />
         <Route path="/movie/:id" element={<MovieCard />} />
       </Routes>
     </Router>
