@@ -1,7 +1,6 @@
+@import "../../../../scss/main.scss";
+
 $size-btn: 40px;
-$primary: #7c3aed;
-$hover: #6d28d9;
-$text: #ffffff;
 
 .movie-finder {
   background-color: white;
@@ -17,7 +16,7 @@ $text: #ffffff;
   input {
     flex: 1;
     padding: 8px 12px;
-    border: 1px solid $primary;
+    border: 1px solid $color-primary;
     border-radius: 6px;
     font-size: 14px;
   }
@@ -25,14 +24,14 @@ $text: #ffffff;
   button {
     width: $size-btn;
     height: $size-btn;
-    background-color: $primary;
-    color: $text;
+    background-color: $color-primary;
+    color: $color-on-primary;
     border: none;
     border-radius: 30%;
     cursor: pointer;
 
     &:hover {
-      background-color: $hover;
+      background-color: $color-primary-dark;
     }
 
     &:last-child {

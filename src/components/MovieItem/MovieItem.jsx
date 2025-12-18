@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { getDate } from "../../utils/dateUtils";
+import { getGenreNames } from "../../utils/getGenreNames";
 import "./style.scss";
 
 const MovieItem = ({
@@ -25,10 +26,8 @@ const MovieItem = ({
             <div>{title}</div>
             <div>{getDate(release_date)}</div>
             <div>
-              {genre_ids?.map((genre_id) => (
-                <p key={genre_id}>
-                  {genresMap?.find((genre) => genre.id === genre_id)?.name}
-                </p>
+              {getGenreNames(genresMap, genre_ids).map((item, index) => (
+                <p key={`${item}-${index}`}>{item}</p>
               ))}
             </div>
           </div>

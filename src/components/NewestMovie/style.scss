@@ -1,6 +1,7 @@
 .background {
   width: 100%;
-  height: calc(100vh - 60px - 60px);
+  aspect-ratio: 16/9;
+  // height: calc(100vh - 60px - 60px);
   padding-top: 20%;
   padding-bottom: 5%;
   padding-left: 100px;

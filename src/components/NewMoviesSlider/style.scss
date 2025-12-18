@@ -1,0 +1,209 @@
+@import "../../scss/main.scss";
+
+$width-image-slider: 400px;
+$gap-text-container: 0px;
+$size-pagination-item: 15px;
+$size-vote-average: 50px;
+
+.movies-slider-wrapper {
+  width: 100%;
+  min-height: calc(100vh - 60px * 2);
+  position: relative;
+}
+.movies-slider-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  filter: blur(3px) brightness(0.7);
+  background-image: url("./components/images/BG-image-to-slider.jpg");
+  background-color: $color-ui-disabled;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  z-index: 1;
+}
+.movies-slider {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  &__container-01 {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+  }
+
+  &__slider-title {
+    font-size: 2.5rem;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  &__prev-slide,
+  &__next-slide {
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    border-radius: 30%;
+
+    background-color: $color-primary;
+    border: 2px solid $color-rating-border;
+
+    &:hover {
+      background-color: $color-primary-dark;
+    }
+  }
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__slide-track {
+    width: calc($width-image-slider * 2);
+    height: calc(($width-image-slider * 1.5));
+    background-color: $color-on-primary;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__slider-image {
+    // backgroundImage:; get from file
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    width: $width-image-slider;
+    aspect-ratio: 2/3;
+    padding: 10px;
+  }
+
+  &__text-container {
+    width: $width-image-slider;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+    gap: $gap-text-container;
+    padding-right: $gap-text-container;
+
+    > * {
+      width: 100%;
+      padding: 10px;
+    }
+  }
+
+  &__title {
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+  &__slider-overflow {
+    font-size: 1rem;
+    text-align: justify;
+    text-indent: 40px;
+    line-height: 1.5;
+  }
+
+  &__slider-genres {
+    font-size: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 5px;
+  }
+
+  &__vote-average {
+    width: $size-vote-average;
+    height: $size-vote-average;
+
+    // position: relative;
+    // top: calc(100% - $size-vote-average);
+    // left: calc(100% - $size-vote-average);
+
+    background-color: $color-on-primary;
+    border-radius: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid $color-primary;
+    color: $color-primary;
+    font-size: medium;
+  }
+
+  &__pagination {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+  &__pagination-item,
+  &__pagination-item-active {
+    width: $size-pagination-item;
+    height: $size-pagination-item;
+    border: none;
+    border-radius: 25%;
+    background-color: $color-primary-dark;
+    &:hover {
+      background-color: $color-primary;
+      cursor: pointer;
+    }
+  }
+
+  &__pagination-item-active {
+    width: $size-pagination-item * 2.2;
+    background-color: $color-primary;
+  }
+}
+
+// &__pagination-item,
+// &__pagination-item-active {
+//   width: $size-pagination-item;
+//   height: $size-pagination-item;
+//   border: none;
+//   border-radius: 20%;
+//   // border: 2px solid $color-primary;
+//   background-color: $color-primary-dark;
+//   &:hover {
+//     // border: 2px solid $color-primary-dark;
+//     background-color: $color-primary;
+//     // &.movies-slider__pagination-item-active::before {
+//     //   background-color: $color-primary-dark;
+//     // }
+//   }
+// }
+// &__pagination-item-active {
+//   width: $size-pagination-item * 2;
+//   border-radius: 20%;
+//   // display: flex;
+//   // justify-content: center;
+//   // align-items: center;
+//   // &::before {
+//   //   content: "";
+//   //   width: 10px;
+//   //   height: 10px;
+//   //   border-radius: 100%;
+//   //   background-color: $color-primary;
+//   // }
+// }
