@@ -3,7 +3,7 @@
 $size-btn: 40px;
 
 .paginate {
-  background-color: $color-on-primary;
+  background-color: $color-accent;
   width: 50%;
   margin: 0 auto;
   padding: 16px;
@@ -25,7 +25,7 @@ $size-btn: 40px;
       height: $size-btn;
       background-color: $color-primary;
       border-radius: 30%;
-      color: $color-on-primary;
+      color: $color-accent;
       border: none;
       cursor: pointer;
 
@@ -58,7 +58,7 @@ $size-btn: 40px;
     button {
       width: 60px;
       background-color: $color-primary;
-      color: $color-on-primary;
+      color: $color-accent;
       border: none;
       border-radius: 6px;
       padding: 6px 0;

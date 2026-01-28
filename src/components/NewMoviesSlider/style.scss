@@ -9,6 +9,7 @@ $size-pagination-item: 15px;
   min-height: calc(100vh - 60px * 2);
   position: relative;
 }
+
 .movies-slider-background {
   position: absolute;
   top: 0;
@@ -56,7 +57,7 @@ $size-pagination-item: 15px;
     border-radius: 30%;
 
     background-color: $color-primary;
-    border: 2px solid $color-rating-border;
+    border: 2px solid $color-ui-border;
 
     transition: background-color 0.2s ease;
 
@@ -89,8 +90,10 @@ $size-pagination-item: 15px;
 
   &__slide {
     width: 100%;
+    overflow: hidden;
     display: flex;
     flex-shrink: 0;
+    overflow: hidden;
   }
 
   &__image {
@@ -98,7 +101,6 @@ $size-pagination-item: 15px;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-
     background-color: $color-ui-disabled;
     width: $width-image-slider;
     aspect-ratio: 2/3;
@@ -109,7 +111,7 @@ $size-pagination-item: 15px;
     width: $width-image-slider;
     // height: 100%;
     // aspect-ratio: 2/3;
-    background-color: $color-on-primary;
+    background-color: $color-accent;
 
     display: flex;
     flex-direction: column;

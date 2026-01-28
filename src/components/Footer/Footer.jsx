@@ -1,7 +1,7 @@
-import "./style.scss";
 import { Link } from "react-router-dom";
 import { TMDBLogo } from "../../components/TMDBLogo/TMDBLogo";
 import GitHubLogo from "./images/github.png";
+import "./style.scss";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();

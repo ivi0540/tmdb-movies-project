@@ -10,10 +10,11 @@ const options = {
 
 const getAllMovies = async (page = 1) => {
   const errorMessage = 'Error in "src/api.js/api.js->getAllMovies"';
+  const today = new Date().toISOString().split("T")[0];
   try {
     const response = await fetch(
-      `${API_URL}/discover/movie?page=${page}`,
-      options
+      `${API_URL}/discover/movie?page=${page}?page=${page}&sort_by=primary_release_date.desc&primary_release_date.lte=${today}&vote_count.gte=50`,
+      options,
     );
     if (!response.ok) {
       throw new Error(`${errorMessage} ${response.status}`);
@@ -61,7 +62,7 @@ const getMovieByTitle = async (title, page = 1) => {
   try {
     const response = await fetch(
       `${API_URL}/search/movie?query=${title}&page=${page}`,
-      options
+      options,
     );
     if (!response.ok) {
       throw new Error(`${errorMessage} ${response.status}`);

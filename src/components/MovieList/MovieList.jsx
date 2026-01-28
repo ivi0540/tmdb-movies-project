@@ -51,7 +51,7 @@ const MovieList = () => {
   }
 
   return (
-    <>
+    <div className="data-container">
       <Paginate
         page={page}
         setPage={setPage}
@@ -65,7 +65,7 @@ const MovieList = () => {
         page={page}
         setPage={setPage}
       />
-      <div className="card-container">
+      <div className="data-container__card-container">
         {movies.length !== 0 ? (
           movies.map((movie) => (
             <MovieItem key={movie.id} {...movie} genresMap={genresMap} />
@@ -74,14 +74,8 @@ const MovieList = () => {
           <p>movies not found</p>
         )}
       </div>
-      <Paginate
-        page={page}
-        setPage={setPage}
-        pagination={pagination}
-        // setPagination={setPagination}
-        // setFetchStatus={setFetchStatus}
-      />
-    </>
+      <Paginate page={page} setPage={setPage} pagination={pagination} />
+    </div>
   );
 };
 
