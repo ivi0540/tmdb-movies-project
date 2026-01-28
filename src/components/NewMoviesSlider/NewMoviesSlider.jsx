@@ -3,6 +3,8 @@ import { Preloader } from "../Preloader/Preloader";
 import { ErrorPreloader } from "../ErrorPreloader/ErrorPreloader";
 import { getNowPlayingMovies, getGenres } from "../../api";
 import { getGenreNames } from "../../utils/getGenreNames";
+import { RatingBadge } from "../../components/RatingBadge/RatingBadge";
+import { Link } from "react-router-dom";
 import "./style.scss";
 
 const NewMoviesSlider = () => {
@@ -12,70 +14,126 @@ const NewMoviesSlider = () => {
     currentSlideIndex: 0,
     minSliderIndex: 0,
     maxSliderIndex: 0,
-    slidesCount: 4, // 0, 1 , 2, 3, 4
+    lastSlideIndex: 4, // 0, 1 , 2, 3, 4 total: 5 items
   });
+
+  const [isAnimating, setIsAnimating] = useState(false);
+  const [isAutoPlayPaused, setIsAutoPlayPaused] = useState(false);
+  const slideTransitionDuration = 2; //2 sek
+  const autoSlideInterval = 10; //10 sek
+
   const [genresMap, setGenresMap] = useState([]);
+
   const getImageUrl = (path = "", size = "original") => {
     // size =  w300 || w780 || w1280 || original
-    if (!path) {
-      return "";
-    }
+    if (!path) return "";
     return `https://image.tmdb.org/t/p/${size}${path}`;
   };
 
-  const getSliderImageStyle = () => {
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const getSlideImageStyle = (slideIndex = 0) => {
     if (sliderState.status !== "success") {
       return { backgroundColor: "gray" };
     }
     if (
       sliderState.status === "success" &&
-      newestMovies[sliderState.currentSlideIndex]?.poster_path
+      newestMovies[slideIndex]?.poster_path
     ) {
       return {
         backgroundImage: `url(${getImageUrl(
-          newestMovies[sliderState.currentSlideIndex].poster_path
+          newestMovies[slideIndex]?.poster_path,
         )})`,
       };
     }
     return { backgroundColor: "gray" };
   };
+  const goToSlideIndex = (
+    index,
+    currentIndex,
+    maxIndex,
+    minIndex,
+    isCurrentlyAnimating,
+  ) => {
+    if (index === currentIndex) return;
+    if (isCurrentlyAnimating) return;
 
-  const goToSlideIndex = (index) => {
-    if (
-      sliderState.status === "success" &&
-      index !== sliderState.currentSlideIndex
-    ) {
-      let newIndex = index;
-      if (index > sliderState.maxSliderIndex) {
-        newIndex = sliderState.minSliderIndex;
-      }
-      if (index < sliderState.minSliderIndex) {
-        newIndex = sliderState.maxSliderIndex;
-      }
-      setSliderState((prev) => ({ ...prev, currentSlideIndex: newIndex }));
+    let newIndex = index;
+    if (index > maxIndex) {
+      newIndex = minIndex;
     }
+    if (index < minIndex) {
+      newIndex = maxIndex;
+    }
+
+    setIsAnimating(true);
+    setTimeout(() => {
+      setIsAnimating(false);
+    }, slideTransitionDuration * 1000);
+
+    setSliderState((prev) => ({ ...prev, currentSlideIndex: newIndex }));
   };
 
-  const renderPaginationItem = () => {
+  const renderPagination = () => {
     return (
       <>
-        {[...Array(sliderState.slidesCount + 1)].map((_, index) => {
+        {[...Array(sliderState.lastSlideIndex + 1)].map((_, index) => {
           const isActive = index === sliderState.currentSlideIndex;
           return (
             <button
-              key={index}
+              key={`pagination-${index}`}
               className={
                 isActive
                   ? "movies-slider__pagination-item-active"
                   : "movies-slider__pagination-item"
               }
+              style={{
+                transition: `width ${slideTransitionDuration}s, background-color ${slideTransitionDuration}s`,
+              }}
               disabled={isActive}
-              onClick={() => goToSlideIndex(index)}
+              onClick={() =>
+                goToSlideIndex(
+                  index,
+                  sliderState.currentSlideIndex,
+                  sliderState.maxSliderIndex,
+                  sliderState.minSliderIndex,
+                  isAnimating,
+                )
+              }
             ></button>
           );
         })}
       </>
     );
+  };
+
+  const renderSliderItems = () => {
+    if (sliderState.status !== "success") return;
+    return newestMovies
+      .slice(0, sliderState.maxSliderIndex + 1)
+      .map((movie, index) => (
+        <Link to={`/movie/${movie.id}`} key={`link-${movie.id}`}>
+          <div key={movie.id} className="movies-slider__slide">
+            <div
+              className="movies-slider__image"
+              style={getSlideImageStyle(index)}
+            >
+              <RatingBadge rating={movie?.vote_average} />
+            </div>
+
+            <div className="movies-slider__text-container">
+              <h2 className="movies-slider__movie-title">{movie?.title}</h2>
+              <div className="movies-slider__overview">{movie?.overview}</div>
+              <div className="movies-slider__genres">
+                {getGenreNames(genresMap, movie?.genre_ids).map(
+                  (item, index) => (
+                    <p key={`${item}-${index}`}>{item}</p>
+                  ),
+                )}
+              </div>
+            </div>
+          </div>
+        </Link>
+      ));
   };
 
   useEffect(() => {
@@ -84,15 +142,14 @@ const NewMoviesSlider = () => {
       try {
         const data = await getNowPlayingMovies();
         const dataGenres = await getGenres();
+        if (!isMount) return;
         setGenresMap(dataGenres);
-        if (!isMount) {
-          return;
-        }
+
         if (data?.results?.length > 0) {
           setSliderState((prev) => ({
             ...prev,
             status: "success",
-            maxSliderIndex: Math.min(data.results.length - 1, prev.slidesCount),
+            maxSliderIndex: Math.min(data.results.length - 1, prev.lastSlideIndex),
           }));
           setNewestMovies(data.results);
         }
@@ -101,9 +158,7 @@ const NewMoviesSlider = () => {
           setNewestMovies([]);
         }
       } catch (error) {
-        if (!isMount) {
-          return;
-        }
+        if (!isMount) return;
         setSliderState((prev) => ({ ...prev, status: "error" }));
         console.log(error);
       }
@@ -112,6 +167,33 @@ const NewMoviesSlider = () => {
       isMount = false;
     };
   }, []);
+
+  useEffect(() => {
+    if (sliderState.status !== "success") return;
+    if (isAutoPlayPaused) return;
+    if (isAnimating) return;
+
+    const intervalId = setInterval(() => {
+      goToSlideIndex(
+        sliderState.currentSlideIndex + 1,
+        sliderState.currentSlideIndex,
+        sliderState.maxSliderIndex,
+        sliderState.minSliderIndex,
+        isAnimating,
+      );
+    }, autoSlideInterval * 1000);
+
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, [
+    sliderState.status,
+    isAutoPlayPaused,
+    sliderState.currentSlideIndex,
+    sliderState.maxSliderIndex,
+    sliderState.minSliderIndex,
+    isAnimating,
+  ]);
 
   if (sliderState.status === "loading") {
     return <Preloader />;
@@ -127,56 +209,62 @@ const NewMoviesSlider = () => {
       <div className="movies-slider-wrapper">
         <div className="movies-slider-background"></div>
         <div className="movies-slider">
-          <h1 className="movies-slider__slider-title">{`Top ${
-            sliderState.slidesCount + 1
+          <h1 className="movies-slider__title">{`Top ${
+            sliderState.lastSlideIndex + 1
           } according to TMDB rating`}</h1>
 
-          <div className="movies-slider__container-01">
+          <div
+            className="movies-slider__main-container"
+            onMouseEnter={() => {
+              setIsAutoPlayPaused(true);
+            }}
+            onMouseLeave={() => {
+              setIsAutoPlayPaused(false);
+            }}
+          >
             <button
-              className="movies-slider__prev-slide"
+              className="movies-slider__btn-prev"
               onClick={() => {
-                goToSlideIndex(sliderState.currentSlideIndex - 1);
+                goToSlideIndex(
+                  sliderState.currentSlideIndex - 1,
+                  sliderState.currentSlideIndex,
+                  sliderState.maxSliderIndex,
+                  sliderState.minSliderIndex,
+                  isAnimating,
+                );
               }}
             >
               Prev Slide
             </button>
             <div className="movies-slider__container">
-              <div className="movies-slider__slide-track">
+              <div className="movies-slider__slide-track-wrapper">
                 <div
-                  className="movies-slider__slider-image"
-                  style={getSliderImageStyle()}
+                  className="movies-slider__slide-track"
+                  style={{
+                    transform: `translateX(-${
+                      sliderState.currentSlideIndex * 100
+                    }%)`,
+                    transition: `transform ${slideTransitionDuration}s ease-out`,
+                  }}
                 >
-                  <div className="movies-slider__vote-average">
-                    {newestMovies[
-                      sliderState.currentSlideIndex
-                    ].vote_average.toFixed(2)}
-                  </div>
-                </div>
-
-                <div className="movies-slider__text-container">
-                  <label className="movies-slider__title">
-                    {newestMovies[sliderState.currentSlideIndex]?.title}
-                  </label>
-                  <div className="movies-slider__slider-overflow">
-                    {newestMovies[sliderState.currentSlideIndex]?.overview}
-                  </div>
-                  <div className="movies-slider__slider-genres">
-                    {getGenreNames(
-                      genresMap,
-                      newestMovies[sliderState.currentSlideIndex]?.genre_ids
-                    ).map((item, index) => (
-                      <p key={`${item}-${index}`}>{item}</p>
-                    ))}
-                  </div>
+                  {renderSliderItems()}
                 </div>
               </div>
               <nav className="movies-slider__pagination">
-                {renderPaginationItem()}
+                {renderPagination()}
               </nav>
             </div>
             <button
-              className="movies-slider__next-slide"
-              onClick={() => goToSlideIndex(sliderState.currentSlideIndex + 1)}
+              className="movies-slider__btn-next"
+              onClick={() =>
+                goToSlideIndex(
+                  sliderState.currentSlideIndex + 1,
+                  sliderState.currentSlideIndex,
+                  sliderState.maxSliderIndex,
+                  sliderState.minSliderIndex,
+                  isAnimating,
+                )
+              }
             >
               Next Slide
             </button>
@@ -189,26 +277,4 @@ const NewMoviesSlider = () => {
 
 export { NewMoviesSlider };
 
-// <div key={`${genreId}-${index}`}>{genreId}</div>
-
-/*
-title
-backdrop_path
-genre_ids
-overview
-poster_path
-release_date
-vote_average
-*/
-
-// {
-//   /* <div className="movies-slider__slider-navigation">
-//   {newestMovies
-//     .slice(0, sliderState.slidesCount + 1)
-//     .map((movie, index) => {
-//       return (
-//         <div key={`${movie.title}-${index}`}>{movie.title}</div>
-//       );
-//     })}
-// </div> */
-// }
+// AbortController изучить на будущее

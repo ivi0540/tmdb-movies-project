@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { getDate } from "../../utils/dateUtils";
 import { getGenreNames } from "../../utils/getGenreNames";
+import { RatingBadge } from "../RatingBadge/RatingBadge";
 import "./style.scss";
 
 const MovieItem = ({
@@ -10,6 +11,7 @@ const MovieItem = ({
   title,
   poster_path,
   genresMap = [],
+  vote_average,
 }) => {
   return (
     <Link to={`/movie/${id}`}>
@@ -22,6 +24,7 @@ const MovieItem = ({
               : "none",
           }}
         >
+          <RatingBadge rating={vote_average} />
           <div className="card__info">
             <div>{title}</div>
             <div>{getDate(release_date)}</div>

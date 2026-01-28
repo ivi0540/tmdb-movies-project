@@ -1,0 +1,22 @@
+@import "../../scss/main.scss";
+$size-vote-average: 50px;
+
+.rating-badge {
+  width: $size-vote-average;
+  height: $size-vote-average;
+  // background-color: get from file RatingBadge.jsx;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid $color-primary;
+
+  color: $color-primary;
+  font-weight: bold;
+  font-size: 14px;
+  font-size: medium;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
