@@ -1,3 +1,4 @@
+@import "../../scss/main.scss";
 @import "../../scss/animations/index";
 
 .footer {
@@ -5,7 +6,8 @@
   justify-content: space-between;
   align-items: center;
   padding: 0.3rem 0;
-  background-color: bisque;
+  background-color: $color-primary;
+  color: $color-text-primary;
   &__wrapper {
     overflow: hidden;
   }
