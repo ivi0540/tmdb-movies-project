@@ -9,6 +9,7 @@ $size-pagination-item: 15px;
   min-height: calc(100vh - 60px * 2);
   position: relative;
 }
+
 .movies-slider-background {
   position: absolute;
   top: 0;
@@ -100,7 +101,6 @@ $size-pagination-item: 15px;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-
     background-color: $color-ui-disabled;
     width: $width-image-slider;
     aspect-ratio: 2/3;

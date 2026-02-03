@@ -158,9 +158,11 @@ const MovieCard = () => {
             </div>
           </div>
         </div>
-        <MovieImages images={images} />
-        <MoviePosters images={images} />
-        <MovieVideos videos={videos} />
+        <div className="media-container">
+          <MovieImages images={images} />
+          <MoviePosters images={images} />
+          <MovieVideos videos={videos} />
+        </div>
       </>
     );
   }
