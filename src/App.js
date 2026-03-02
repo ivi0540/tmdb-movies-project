@@ -7,13 +7,13 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<MainPage />} />
-        <Route path="/movie" element={<MoviesPage />} />
-        <Route path="/movie/:id" element={<MovieCard />} />
-      </Routes>
-    </Router>
+    // <Router>
+    // </Router>
+    <Routes>
+      <Route path="/" element={<MainPage />} />
+      <Route path="/movie" element={<MoviesPage />} />
+      <Route path="/movie/:id" element={<MovieCard />} />
+    </Routes>
   );
 }
 
