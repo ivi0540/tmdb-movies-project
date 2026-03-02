@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/tmdb-movies-project/static/css/main.be98958d.css",
-    "main.js": "/tmdb-movies-project/static/js/main.745d28f3.js",
+    "main.js": "/tmdb-movies-project/static/js/main.a371a4c6.js",
     "static/media/BG-image-to-slider.jpg": "/tmdb-movies-project/static/media/BG-image-to-slider.2e3c535ba3fbb125be11.jpg",
     "static/media/github.png": "/tmdb-movies-project/static/media/github.fd255f4a917df8a3a85f.png",
     "static/media/TMDB-logo.png": "/tmdb-movies-project/static/media/TMDB-logo.378d8e27b7376d8c2e8f.png",
     "index.html": "/tmdb-movies-project/index.html",
     "main.be98958d.css.map": "/tmdb-movies-project/static/css/main.be98958d.css.map",
-    "main.745d28f3.js.map": "/tmdb-movies-project/static/js/main.745d28f3.js.map"
+    "main.a371a4c6.js.map": "/tmdb-movies-project/static/js/main.a371a4c6.js.map"
   },
   "entrypoints": [
     "static/css/main.be98958d.css",
-    "static/js/main.745d28f3.js"
+    "static/js/main.a371a4c6.js"
   ]
 }
